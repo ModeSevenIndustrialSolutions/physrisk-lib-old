@@ -1,11 +1,13 @@
 from typing import List, Optional
 
 import numpy as np
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TypedArray(np.ndarray):
     @classmethod
+    # TODO[pydantic]: We couldn't refactor `__get_validators__`, please create the `__get_pydantic_core_schema__` manually.
+    # Check https://docs.pydantic.dev/latest/migration/#defining-custom-types for more information.
     def __get_validators__(cls):
         yield cls.validate_type
 
@@ -80,9 +82,7 @@ class ExceedanceCurve(BaseModel):
 
     values: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
     exceed_probabilities: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
-
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class Distribution(BaseModel):
@@ -90,9 +90,7 @@ class Distribution(BaseModel):
 
     bin_edges: np.ndarray = Field(default_factory=lambda: np.zeros(11), description="")
     probabilities: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
-
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class HazardEventDistrib(BaseModel):
@@ -100,9 +98,7 @@ class HazardEventDistrib(BaseModel):
 
     intensity_bin_edges: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
     probabilities: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
-
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class VulnerabilityCurve(BaseModel):
@@ -118,9 +114,7 @@ class VulnerabilityCurve(BaseModel):
     intensity_units: str = Field(description="units of the intensity")
     impact_mean: List[float] = Field(description="mean impact (damage or disruption)")
     impact_std: List[float] = Field(description="standard deviation of impact (damage or disruption)")
-
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class VulnerabilityCurves(BaseModel):
@@ -135,6 +129,4 @@ class VulnerabilityDistrib(BaseModel):
     intensity_bin_edges: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
     impact_bin_edges: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
     prob_matrix: np.ndarray = Field(default_factory=lambda: np.zeros(10), description="")
-
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)

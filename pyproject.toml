@@ -1,10 +1,9 @@
 [project]
-name = "physrisk-lib"
+name = "physrisk"
 version = "0.20.0"
 description = "Physical climate risk calculation engine."
 authors = [
-    { name = "Joe Moorhouse", email = "72577720+MichaelTiemannOSC@users.noreply.github.com" },
-    {name = "Joseph Moorhouse", email = "72577720+MichaelTiemannOSC@users.noreply.github.com"},
+    { name = "Joseph Moorhouse", email = "5102656+joemoorhouse@users.noreply.github.com" },
 ]
 requires-python = ">=3.9,<3.11"
 readme = "README.md"
@@ -21,7 +20,6 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.9",
   "Topic :: Office/Business :: Financial",
@@ -90,7 +88,7 @@ exclude = '''
 '''
 
 [tool.pytest.ini_options]
-testpaths = "src/test"
+testpaths = "tests"
 addopts = "-v"
 
 [tool.mypy]

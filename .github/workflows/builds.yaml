@@ -61,6 +61,7 @@ jobs:
         with:
           command_line: pdm list --graph
           output_file_name: metadata/dependency-graph.txt
+          # yamllint disable-line rule:truthy
           display_file_content: NO
 
       - name: "Save file listing of build directory"
@@ -68,6 +69,7 @@ jobs:
         with:
           command_line: ls -al dist/*
           output_file_name: metadata/dist-ls.txt
+          # yamllint disable-line rule:truthy
           display_file_content: NO
 
       - name: Store the build metadata

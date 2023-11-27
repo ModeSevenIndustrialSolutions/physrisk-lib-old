@@ -34,13 +34,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.3] - 2022-04-01
 
-### Fixes
+**Fixes:**
 
 - Correct ValueError message raised by physrisk.requests.get
 
 ## [0.1.2] - 2022-04-01
 
-### Fixes
+**Fixes:**
 
 - Add missing **init**.py file in src/physrisk/data_objects
 
