@@ -12,20 +12,10 @@ else
 fi
 
 # Forward
-# for TEST in $(find $TARGET -name 'test*.py' | xargs)
-# do
-# 	PREFIX_STRIP="${TEST/test_/}"
-#	NEW_TEST="${PREFIX_STRIP/.py/_test.py}"
-#	echo "Renaming $TEST -> $NEW_TEST"
-#	git mv "${TEST}" "${NEW_TEST}"
-# done
-
-# Revert
-for TEST in $(find $TARGET -name '*_test.py' | xargs)
+for TEST in $(find $TARGET -name 'test*.py' | xargs)
 do
-	DIRNAME=$(dirname $TEST)
-	FILENAME=$(basename $TEST)
-	OLD_TEST="${FILENAME/_test.py/.py}"
-	echo "Renaming $TEST -> $DIRNAME/test_$OLD_TEST"
-	mv "${TEST}" "$DIRNAME/test_$"
+ 	PREFIX_STRIP="${TEST/test_/}"
+	NEW_TEST="${PREFIX_STRIP/.py/_test.py}"
+	echo "Renaming $TEST -> $NEW_TEST"
+	git mv "${TEST}" "${NEW_TEST}"
 done
