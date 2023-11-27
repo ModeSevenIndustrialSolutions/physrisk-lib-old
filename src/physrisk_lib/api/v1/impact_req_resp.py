@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Dict, List, Optional, Sequence
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from physrisk.api.v1.common import Assets, Distribution, ExceedanceCurve, VulnerabilityDistrib
 from physrisk.api.v1.hazard_data import Scenario
@@ -92,7 +92,7 @@ class RiskMeasuresForAssets(BaseModel):
     key: RiskMeasureKey
     scores: List[int] = Field(None, description="Identifier for the risk measure.")
     measures_0: List[float]
-    measures_1: Optional[List[float]]
+    measures_1: Optional[List[float]] = None
 
 
 class ScoreBasedRiskMeasureSetDefinition(BaseModel):
@@ -106,7 +106,7 @@ class RiskMeasures(BaseModel):
 
     measures_for_assets: List[RiskMeasuresForAssets]
     score_based_measure_set_defn: ScoreBasedRiskMeasureSetDefinition
-    measures_definitions: Optional[List[RiskMeasureDefinition]]
+    measures_definitions: Optional[List[RiskMeasureDefinition]] = None
     scenarios: List[Scenario]
     asset_ids: List[str]
 
@@ -130,17 +130,15 @@ class AssetSingleImpact(BaseModel):
         fractional decrease to an equivalent cash amount.""",
     )
     year: Optional[str] = None
-    impact_distribution: Optional[Distribution]
-    impact_exceedance: Optional[ExceedanceCurve]
+    impact_distribution: Optional[Distribution] = None
+    impact_exceedance: Optional[ExceedanceCurve] = None
     impact_mean: float
     impact_std_deviation: float
     calc_details: Optional[AcuteHazardCalculationDetails] = Field(
         None,
         description="""Details of impact calculation for acute hazard calculations.""",
     )
-
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class AssetLevelImpact(BaseModel):

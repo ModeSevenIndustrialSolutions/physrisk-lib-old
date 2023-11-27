@@ -29,7 +29,7 @@ class Colormap(BaseModel):
 class MapInfo(BaseModel):
     """Provides information about map layer."""
 
-    colormap: Optional[Colormap] = Field(description="Details of colormap.")
+    colormap: Optional[Colormap] = Field(None, description="Details of colormap.")
     path: str = Field(
         description="Name of array reprojected to Web Mercator for on-the-fly display or to hash to obtain tile ID. If not supplied, convention is to add '_map' to path."  # noqa
     )
@@ -39,11 +39,12 @@ class MapInfo(BaseModel):
     )
     # note that the bounds should be consistent with the array attributes
     source: Optional[str] = Field(
+        None,
         description="""Source of map image. These are
                             'map_array': single Mercator projection array at path above
                             'map_array_pyramid': pyramid of Mercator projection arrays
                             'mapbox'.
-                                  """
+                                  """,
     )
 
 
@@ -188,7 +189,7 @@ class HazardDataRequest(BaseHazardRequest):
 class HazardDataResponseItem(BaseModel):
     intensity_curve_set: List[IntensityCurve]
     request_item_id: str
-    event_type: Optional[str]
+    event_type: Optional[str] = None
     model: str
     scenario: str
     year: int

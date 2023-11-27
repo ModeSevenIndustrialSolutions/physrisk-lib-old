@@ -22,7 +22,7 @@ class AssetExposureRequest(BaseModel):
 
 class Exposure(BaseModel):
     category: str
-    value: Optional[float]
+    value: Optional[float] = None
 
 
 class AssetExposure(BaseModel):
