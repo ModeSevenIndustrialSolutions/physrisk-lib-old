@@ -2,9 +2,9 @@
 
 Physical climate risk calculation engine.
 
-<img src="docs/images/OS-Climate-Logo.png" alt="drawing" width="150"/>
+![drawing](https://https://github.com/os-climate/physrisk/docs/images/OS-Climate-Logo.png)
 
-## About physrisk
+## About Physrisk
 
 An [OS-Climate](https://os-climate.org) project, physrisk is a library for assessing the physical effects of climate change and thereby the potential benefit of measures to improve resilience.
 
